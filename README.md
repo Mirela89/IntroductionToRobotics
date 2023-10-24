@@ -4,6 +4,13 @@ This repository contains a collection of hands-on robotics assignments undertake
 
 The first assignment focuses on learning how to control the colors of an RGB LED light using potentiometers. Think of an RGB LED as a tiny, controllable traffic light, where you can make it show any color you want. Potentiometers are like knobs that let you adjust the amount of red, green, and blue light the LED gives off. By turning these knobs, you can create different colors, and even mix them to create unique ones.
 
+The components used are:
+* Microcontroller (Arduino UNO)
+* Breadboard
+* RGB Led (at least 1)
+* Potentiometers (at least 3)
+* Resistors & jumper wires (as needed)
+
 <p align="center">
   <img src="rgb_led/circuit.jpeg" alt="Circuit" width="500">
 </p>

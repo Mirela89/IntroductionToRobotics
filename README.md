@@ -75,6 +75,14 @@ The components used are:
   * when the elevator doors close and it starts moving
 * Resistors (220-330 Ohms for LEDs) & Jumper Wires
 
+<p align="center">
+  <img src="elevator_simulator/elevator_circuit.jpeg" alt="Circuit" width="500">
+</p>
+
+The code continuously checks the status of the call buttons, and when a button is pressed, it initiates elevator movement to the desired floor. The elevator doors open and close with corresponding buzzer sounds. During the elevator's movement, the operational LED blinks to indicate motion, and the buzzer emits a sound similar to an elevator that is in motion. Floor indicator LEDs show the current floor by lighting up. 
+
+[Watch the video](https://www.youtube.com/shorts/97vl4IrVoe4) to see this project in action.
+
 ```cpp
 const int floorLeds[] = {2, 3, 4};  //digital pins for floor indicator LEDs
 const int operationalLed = 5;       //digital pin for the operational state LED

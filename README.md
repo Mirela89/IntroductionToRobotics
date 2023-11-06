@@ -1,7 +1,9 @@
 # Introduction To Robotics
 This repository contains a collection of hands-on robotics assignments undertaken during my third-year studies at the Faculty of Mathematics and Computer Science, University of Bucharest. Each assignment in this repository provides clear requirements, detailed implementation instructions, and includes the code and image files necessary.
-# RGB LED Control Using Potentiometers
 
+<details>
+<summary>RGB LED Control Using Potentiometers</summary>
+<br>
 The first assignment focuses on learning how to control the colors of an RGB LED light using potentiometers. Think of an RGB LED as a tiny, controllable traffic light, where you can make it show any color you want. Potentiometers are like knobs that let you adjust the amount of red, green, and blue light the LED gives off. By turning these knobs, you can create different colors, and even mix them to create unique ones.
 
 The components used are:
@@ -59,8 +61,11 @@ void loop() {
   analogWrite(bluePin, blueBrightness);
 }
 ```
-# Elevator Simulator
+</details>
 
+<details>
+<summary>Elevator Simulator</summary>
+<br>
 This assignment is about designing a control system that simulates a 3-floor elevator using the Arduino platform. 
 The components used are:
 * Microcontroller (Arduino UNO) & Breadboard
@@ -231,3 +236,188 @@ void blinkOperationalLED() {
   }
 }
 ```
+</details>
+
+<details>
+<summary>7 segment display drawing</summary>
+<br>
+This project uses a joystick and a button to control a 7 segment display. The joystick allows you to move a segment around the display, like drawing with a virtual pen. You can't move through "walls," so it jumps to neighboring spots. The button lets you turn the segment on or off with a quick press. If you hold the button down for a while, it clears the display and puts the segment back at the starting point.
+
+Components used:
+* Microcontroller (Arduino UNO) & Breadboard
+* 1 7-Segment Display
+* 1 Joystick
+* Resistors (220-330 Ohms for LEDs) & Jumper Wires
+
+The following code begins by declaring pin connections for the joystick (analog inputs for X and Y axes and a digital input for the switch) and the 7-segment display (an array of pins for segments and a pin for the decimal point). The code initializes the display and continuously reads the joystick input, allowing you to move a selected segment's position on the display based on the joystick's X and Y values. It also handles button presses: short presses toggle the state of the current segment (ON or OFF), and long presses reset the entire display. The code supports both common anode and common cathode displays.
+
+```cpp
+// declare all the joystick pins
+const int pinSW = 2; // digital pin connected to switch output
+const int pinX = A0; // A0 - analog pin connected to X output
+const int pinY = A1; // A1 - analog pin connected to Y output
+
+// declare all the segments pins
+const int pinA = 12;
+const int pinB = 10;
+const int pinC = 9;
+const int pinD = 8;
+const int pinE = 7;
+const int pinF = 6;
+const int pinG = 5;
+const int pinDP = 4;
+
+const int segSize = 8;
+int index = 7; // Start at the decimal point position
+
+bool commonAnode = false;
+byte state = HIGH;
+byte swState = LOW;
+byte lastSwState = LOW;
+int xValue = 0;
+int yValue = 0;
+bool joyMoved = false;
+
+void setup() {
+  // Initialize all the pins
+  for (int i = 0; i < segSize; i++) {
+    pinMode(i, OUTPUT);
+  }
+
+  pinMode(pinSW, INPUT_PULLUP);
+
+  if (commonAnode == true) {
+    state = !state;
+  }
+
+  // Initialize the display
+  resetDisplay();
+
+  // Set the initial position to the decimal point
+  index = 7; // Set to the decimal point
+  // Ensure that the decimal point is turned on initially
+  if (commonAnode) {
+    digitalWrite(index, state);
+  } else {
+    digitalWrite(index, !state);
+  }
+}
+
+void loop() {
+  // Read joystick input
+  readJoystickInput();
+
+  // Handle button presses
+  handleButtonPress();
+
+  // Update the display
+  updateDisplay();
+  
+  // Make the current position blink
+  delay(200); // Blink interval in milliseconds
+  if (commonAnode) {
+    digitalWrite(index, !state);
+  } else {
+    digitalWrite(index, state);
+  }
+  delay(200); // Blink interval in milliseconds
+}
+
+
+
+void readJoystickInput() {
+  // Read analog values from the X and Y pins
+  xValue = analogRead(pinX);
+  yValue = analogRead(pinY);
+
+  // Check if joystick has moved
+  if (xValue > 350 || yValue > 350) {
+    joyMoved = true;
+  } else {
+    joyMoved = false;
+  }
+
+  // Determine the new segment position based on joystick input
+  if (joyMoved) {
+    int xDirection = xValue / 650;
+    int yDirection = yValue / 650;
+
+    // Implement your logic to move the segment based on xDirection and yDirection
+    // Make sure it respects the natural movement and doesn't pass through "walls"
+    
+    // Example logic for movement (you can adjust this as needed)
+    if (xDirection > 0) {
+      // Move to the right if possible (check for boundaries)
+      if (index < 7) {
+        index++;
+      }
+    } else if (xDirection < 0) {
+      // Move to the left if possible (check for boundaries)
+      if (index > 0) {
+        index--;
+      }
+    }
+    
+    if (yDirection > 0) {
+      // Move downward if possible (check for boundaries)
+      // Implement your logic here
+    } else if (yDirection < 0) {
+      // Move upward if possible (check for boundaries)
+      // Implement your logic here
+    }
+  }
+}
+
+void handleButtonPress() {
+  // Read the current switch state
+  swState = digitalRead(pinSW);
+
+  // Check for a short press (toggle segment state)
+  if (swState != lastSwState) {
+    if (swState == LOW) {
+      // Toggle the state of the current segment (ON to OFF or OFF to ON)
+      toggleSegmentState();
+    }
+  }
+
+  // Check for a long press (reset display)
+  if (swState == LOW) {
+    delay(1000); // Adjust the delay time for the long press as needed
+    if (digitalRead(pinSW) == LOW) {
+      // Reset the entire display
+      resetDisplay();
+    }
+  }
+
+  lastSwState = swState;
+}
+
+void toggleSegmentState() {
+  // Toggle the state of the current segment (ON to OFF or OFF to ON)
+  if (commonAnode) {
+    // If using common anode, set the state of the current segment
+    // to the opposite of the 'state' variable.
+    digitalWrite(index, !state);
+  } else {
+    // If using common cathode, set the state of the current segment
+    // to the 'state' variable.
+    digitalWrite(index, state);
+  }
+}
+
+void updateDisplay() {
+  // Update the display based on the current 'index' and 'state' variables
+  // You can add additional logic here to control segments if needed
+}
+
+// Reset the display with the decimal point lit
+void resetDisplay() {
+  for (int i = 0; i < segSize; i++) {
+    digitalWrite(i, LOW);
+  }
+
+  // Set the display position to the decimal point (DP)
+  digitalWrite(pinDP, HIGH);
+}
+```
+</details>

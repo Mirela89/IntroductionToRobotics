@@ -249,6 +249,17 @@ Components used:
 * 1 Joystick
 * Resistors (220-330 Ohms for LEDs) & Jumper Wires
 
+| Current segment  |  UP  | DOWN | LEFT | RIGHT |
+| ---------------- | ---- | ---- | ---- | ----- |
+|        a         | N/A  |   g  |  f   |   b   |
+|        b         |  a   |   g  |  f   |  N/A  |
+|        c         |  g   |   d  |  e   |  dp   |
+|        d         |  g   | N/A  |  e   |   c   |
+|        e         |  g   |   d  | N/A  |   c   |
+|        f         |  a   |   g  | N/A  |   b   |
+|        g         |  a   |   d  | N/A  |  N/A  |
+|       dp         | N/A  | N/A  |  c   |  N/A  |
+
 The following code begins by declaring pin connections for the joystick (analog inputs for X and Y axes and a digital input for the switch) and the 7-segment display (an array of pins for segments and a pin for the decimal point). The code initializes the display and continuously reads the joystick input, allowing you to move a selected segment's position on the display based on the joystick's X and Y values. It also handles button presses: short presses toggle the state of the current segment (ON or OFF), and long presses reset the entire display. The code supports both common anode and common cathode displays.
 
 ```cpp
@@ -278,146 +289,5 @@ int xValue = 0;
 int yValue = 0;
 bool joyMoved = false;
 
-void setup() {
-  // Initialize all the pins
-  for (int i = 0; i < segSize; i++) {
-    pinMode(i, OUTPUT);
-  }
-
-  pinMode(pinSW, INPUT_PULLUP);
-
-  if (commonAnode == true) {
-    state = !state;
-  }
-
-  // Initialize the display
-  resetDisplay();
-
-  // Set the initial position to the decimal point
-  index = 7; // Set to the decimal point
-  // Ensure that the decimal point is turned on initially
-  if (commonAnode) {
-    digitalWrite(index, state);
-  } else {
-    digitalWrite(index, !state);
-  }
-}
-
-void loop() {
-  // Read joystick input
-  readJoystickInput();
-
-  // Handle button presses
-  handleButtonPress();
-
-  // Update the display
-  updateDisplay();
-  
-  // Make the current position blink
-  delay(200); // Blink interval in milliseconds
-  if (commonAnode) {
-    digitalWrite(index, !state);
-  } else {
-    digitalWrite(index, state);
-  }
-  delay(200); // Blink interval in milliseconds
-}
-
-
-
-void readJoystickInput() {
-  // Read analog values from the X and Y pins
-  xValue = analogRead(pinX);
-  yValue = analogRead(pinY);
-
-  // Check if joystick has moved
-  if (xValue > 350 || yValue > 350) {
-    joyMoved = true;
-  } else {
-    joyMoved = false;
-  }
-
-  // Determine the new segment position based on joystick input
-  if (joyMoved) {
-    int xDirection = xValue / 650;
-    int yDirection = yValue / 650;
-
-    // Implement your logic to move the segment based on xDirection and yDirection
-    // Make sure it respects the natural movement and doesn't pass through "walls"
-    
-    // Example logic for movement (you can adjust this as needed)
-    if (xDirection > 0) {
-      // Move to the right if possible (check for boundaries)
-      if (index < 7) {
-        index++;
-      }
-    } else if (xDirection < 0) {
-      // Move to the left if possible (check for boundaries)
-      if (index > 0) {
-        index--;
-      }
-    }
-    
-    if (yDirection > 0) {
-      // Move downward if possible (check for boundaries)
-      // Implement your logic here
-    } else if (yDirection < 0) {
-      // Move upward if possible (check for boundaries)
-      // Implement your logic here
-    }
-  }
-}
-
-void handleButtonPress() {
-  // Read the current switch state
-  swState = digitalRead(pinSW);
-
-  // Check for a short press (toggle segment state)
-  if (swState != lastSwState) {
-    if (swState == LOW) {
-      // Toggle the state of the current segment (ON to OFF or OFF to ON)
-      toggleSegmentState();
-    }
-  }
-
-  // Check for a long press (reset display)
-  if (swState == LOW) {
-    delay(1000); // Adjust the delay time for the long press as needed
-    if (digitalRead(pinSW) == LOW) {
-      // Reset the entire display
-      resetDisplay();
-    }
-  }
-
-  lastSwState = swState;
-}
-
-void toggleSegmentState() {
-  // Toggle the state of the current segment (ON to OFF or OFF to ON)
-  if (commonAnode) {
-    // If using common anode, set the state of the current segment
-    // to the opposite of the 'state' variable.
-    digitalWrite(index, !state);
-  } else {
-    // If using common cathode, set the state of the current segment
-    // to the 'state' variable.
-    digitalWrite(index, state);
-  }
-}
-
-void updateDisplay() {
-  // Update the display based on the current 'index' and 'state' variables
-  // You can add additional logic here to control segments if needed
-}
-
-// Reset the display with the decimal point lit
-void resetDisplay() {
-  for (int i = 0; i < segSize; i++) {
-    digitalWrite(i, LOW);
-  }
-
-  // Set the display position to the decimal point (DP)
-  digitalWrite(pinDP, HIGH);
-}
 ```
 </details>

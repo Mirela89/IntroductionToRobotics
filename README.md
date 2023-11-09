@@ -244,7 +244,7 @@ void blinkOperationalLED() {
 This project uses a joystick and a button to control a 7 segment display. The joystick allows you to move a segment around the display, like drawing with a virtual pen. You can't move through "walls," so it jumps to neighboring spots. The button lets you turn the segment on or off with a quick press. If you hold the button down for a while, it clears the display and puts the segment back at the starting point.
 
 <p align="center">
-  <img src="elevator_simulator/elevator_circuit.jpeg" alt="Circuit" width="500">
+  <img src="seven_digit_display/circuit.jpeg" alt="Circuit" width="500">
 </p>
 
 Components used:

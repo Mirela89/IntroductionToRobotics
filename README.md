@@ -268,6 +268,8 @@ Movement table:
 
 The following code begins by declaring pin connections for the joystick (analog inputs for X and Y axes and a digital input for the switch) and the 7-segment display (an array of pins for segments and a pin for the decimal point). The code initializes the display and continuously reads the joystick input, allowing you to move a selected segment's position on the display based on the joystick's X and Y values. It also handles button presses: short presses toggle the state of the current segment (ON or OFF), and long presses reset the entire display. The code supports both common anode and common cathode displays.
 
+[Watch the video](https://www.youtube.com/shorts/4OSbZHWYBVo) to see this project in action.
+
 ```cpp
 // Declare all the joystick pins
 const int pinSW = 2; // Digital pin connected to switch output

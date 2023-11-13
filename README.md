@@ -471,3 +471,20 @@ void updateDisplay() {
 }
 ```
 </details>
+
+<details>
+<summary>Stopwatch Timer</summary>
+<br>
+The assignment involves creating a stopwatch timer using an Arduino microcontroller and a 4-digit 7-segment display. The timer should count in tenths of a second and include functionalities such as start/stop, lap time recording, and display updates. The lap time feature saves up to 4 laps, with the ability to override the first lap time when the limit is reached. Button debouncing is implemented to ensure accurate input recognition. The code utilizes multiplexing to display the timer on the 7-segment display and includes features such as clearing the display to prevent ghosting. 
+
+Components:
+* Microcontroller (Arduino UNO) & Breadboard
+* 1 4 digit 7-Segment Display
+* 1 Shift Register (74HC595)
+* 3 Buttons
+* Resistors (220-330 Ohms for LEDs) & Jumper Wires
+
+<p align="center">
+  <img src="seven_digit_display/circuit.jpeg" alt="Circuit" width="500">
+</p>
+</details>

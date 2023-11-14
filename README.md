@@ -485,8 +485,10 @@ Components:
 * Resistors (220-330 Ohms for LEDs) & Jumper Wires
 
 <p align="center">
-  <img src="seven_digit_display/circuit.jpeg" alt="Circuit" width="500">
+  <img src="stopwatch_timer/circuit.jpeg" alt="Circuit" width="500">
 </p>
+
+[Watch the video](https://www.youtube.com/shorts/4OSbZHWYBVo) to see this project in action.
 
 ```cpp
 // DS = [D]ata [S]torage - data
@@ -556,13 +558,13 @@ unsigned long number = 0; // The number being displayed
 
 // Variables for button debouncing
 unsigned long lastDebounceTime = 0;
-unsigned long debounceDelay = 50; 
+unsigned long debounceDelay = 200; 
 
 unsigned long lastButton2Time = 0;
-unsigned long button2DebounceDelay = 50;
+unsigned long button2DebounceDelay = 200;
 
 unsigned long lastButton3Time = 0;
-unsigned long button3DebounceDelay = 50;
+unsigned long button3DebounceDelay = 200;
 
 // New flag to track if the stopwatch is paused
 bool isPaused = false;

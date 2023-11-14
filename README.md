@@ -488,7 +488,7 @@ Components:
   <img src="stopwatch_timer/circuit.jpeg" alt="Circuit" width="500">
 </p>
 
-[Watch the video](https://www.youtube.com/shorts/4OSbZHWYBVo) to see this project in action.
+[Watch the video](https://www.youtube.com/shorts/l9H-kDRdOQI) to see this project in action.
 
 ```cpp
 // DS = [D]ata [S]torage - data

@@ -726,3 +726,20 @@ digitalWrite(displayDigits[displayNumber], LOW);
 }
 ```
 </details>
+
+<details>
+<summary>Pseudo-Smart Environment Monitor and Logger</summary>
+<br>
+In this project, I have creating a system that monitors and controls two sensors: an ultrasonic sensor measuring distance and an LDR (Light Dependent Resistor) sensor measuring light levels. The system has a menu-driven interface via serial communication, allowing the user to adjust settings, view sensor readings, and control an RGB LED. The RGB LED can be set manually or automatically based on sensor thresholds. The system also logs sensor data and allows the user to reset the logged data. The settings are stored in the EEPROM, providing a way to retain configurations even when the system is turned off.
+
+<p align="center">
+  <img src="seven_digit_display/circuit.jpeg" alt="Circuit" width="500">
+</p>
+
+Components used:
+* Microcontroller (Arduino UNO) & Breadboard
+* 1 Ultrasonic Sensor (HC-SR04)
+* 1 LDR (Light-Dependent Resistor)
+* 1 RGB LED
+* Resistors (220-330 Ohms for LEDs) & Jumper Wires
+</details>

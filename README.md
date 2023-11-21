@@ -750,7 +750,7 @@ The menu system and its submenus provide a structured way for users to interact 
   * System Status (checks current sensor readings, displaying current sensor settings, viewing logged data, and returning to the main menu)
   * RGB LED Control (handles RGB LED control, offering options for manual color control, toggling automatic mode, and returning to the main menu)
 
-[Watch the video](https://www.youtube.com/shorts/l9H-kDRdOQI) to see this project in action.
+[Watch the video](https://www.youtube.com/shorts/KBADdgj1S4U) to see this project in action.
 
 ```cpp
 #include <EEPROM.h>

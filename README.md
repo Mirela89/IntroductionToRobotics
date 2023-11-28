@@ -1221,6 +1221,10 @@ void logSensorData(int ultrasonicValue, int ldrValue) {
 <br>
 This project is a small game developed on an 8x8 LED matrix using Arduino UNO and a joystick. The game features three main elements: the player, bombs/bullets, and walls. It initializes with a player and randomly generated walls on the LED matrix. The player blinks slowly at its starting position and is controlled by the joystick, allowing horizontal and vertical movement. The scope of the game is for the player to strategically places bombs to destroy nearby walls.
 
+<p align="center">
+  <img src="matrix_game/circuit.jpeg" alt="Circuit" width="500">
+</p>
+
 * Player 
   * It blinks slowly on the matrix, indicating its position
   * The player can move horizontally and vertically on the matrix, as it is controlled by the joystick
@@ -1231,9 +1235,7 @@ This project is a small game developed on an 8x8 LED matrix using Arduino UNO an
   * They do not blink, as they are static elements on the map
   * Walls occupy 50%-75% of the matrix, creating obstacles for the player
 
-<p align="center">
-  <img src="matrix_game/circuit.jpeg" alt="Circuit" width="500">
-</p>
+[Watch the video](https://www.youtube.com/shorts/4Q6-pDnoSXI) to see this project in action.
 
 Components used:
 * Microcontroller (Arduino UNO) & Breadboard

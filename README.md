@@ -1443,3 +1443,30 @@ void placeBomb() {
 }
 ```
 </details>
+
+<details>
+<summary>LCD Display Menu</summary>
+<br>
+This assignment involves programming an Arduino with a joystick and an LCD display to create a simple menu system. The menu has options like starting a game, adjusting settings for LCD and matrix brightness, and viewing information about the game's creator. The user can navigate through the menu using the joystick, selecting options by pressing the joystick button. The ">" symbol dynamically moves to highlight the selected option. The code includes functions to handle submenus and debouncing for better user interaction.
+  
+Components used:
+* Microcontroller (Arduino UNO) & Breadboard
+* 1 8x8 LED Matrix
+* 1 MAX7219
+* 1 Joystick
+* 1 LCD Display
+* 1 Potentiometer
+* Resistors and capacitors as needed
+* Connecting wires
+
+When powering up the project, a greeting message is shown for a few moments. 
+
+The menu has 3 options:
+* Start Game (starts the initial level of the game)
+* Settings
+  * LCD brightness control (saves value to EEPROM and loads it upon system start)
+  * Matrix brightness control (saves value to EEPROM and loads it upon system start)
+* About (includes details about the creator of the game)
+
+When the game ends, a message is displayed. When the user presses the joystick, it returns to the main menu again.
+</details>

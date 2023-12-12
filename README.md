@@ -1472,6 +1472,8 @@ The menu has 3 options:
   * Matrix brightness control (saves value to EEPROM and loads it upon system start)
 * About (includes details about the creator of the game)
 
+[Watch the video](https://www.youtube.com/shorts/dCA8f2gH3vs) to see this functionality in action.
+
 When the game ends, a message is displayed. When the user presses the joystick, it returns to the main menu again.
 
 The cursor moving logic is similar to the one implemented here: https://www.instructables.com/Arduino-Uno-Menu-Template , but is modified to work with a joystick, since the project doesn't use an LCD Display Shield.

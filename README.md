@@ -1459,6 +1459,10 @@ Components used:
 * Resistors and capacitors as needed
 * Connecting wires
 
+<p align="center">
+  <img src="lcd_display/circuit.jpeg" alt="Circuit" width="500">
+</p>
+
 When powering up the project, a greeting message is shown for a few moments. 
 
 The menu has 3 options:
@@ -1469,4 +1473,6 @@ The menu has 3 options:
 * About (includes details about the creator of the game)
 
 When the game ends, a message is displayed. When the user presses the joystick, it returns to the main menu again.
+
+The cursor moving logic is similar to the one implemented here: https://www.instructables.com/Arduino-Uno-Menu-Template , but is modified to work with a joystick, since the project doesn't use an LCD Display Shield.
 </details>
